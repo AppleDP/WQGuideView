@@ -15,6 +15,7 @@
 		846137581D9D0C4D0038AE04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 846137561D9D0C4D0038AE04 /* LaunchScreen.storyboard */; };
 		846137631D9D0C4D0038AE04 /* WQGuideViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 846137621D9D0C4D0038AE04 /* WQGuideViewTests.m */; };
 		8461376E1D9D0C4D0038AE04 /* WQGuideViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461376D1D9D0C4D0038AE04 /* WQGuideViewUITests.m */; };
+		8461377E1D9D0C8B0038AE04 /* WQGuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8461377D1D9D0C8B0038AE04 /* WQGuideView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		846137691D9D0C4D0038AE04 /* WQGuideViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WQGuideViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8461376D1D9D0C4D0038AE04 /* WQGuideViewUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WQGuideViewUITests.m; sourceTree = "<group>"; };
 		8461376F1D9D0C4D0038AE04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8461377C1D9D0C8B0038AE04 /* WQGuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WQGuideView.h; sourceTree = "<group>"; };
+		8461377D1D9D0C8B0038AE04 /* WQGuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WQGuideView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,7 @@
 		846137471D9D0C4D0038AE04 /* WQGuideView */ = {
 			isa = PBXGroup;
 			children = (
+				8461377B1D9D0C690038AE04 /* WQGuideVIew */,
 				8461374B1D9D0C4D0038AE04 /* AppDelegate.h */,
 				8461374C1D9D0C4D0038AE04 /* AppDelegate.m */,
 				8461374E1D9D0C4D0038AE04 /* ViewController.h */,
@@ -138,6 +142,15 @@
 				8461376F1D9D0C4D0038AE04 /* Info.plist */,
 			);
 			path = WQGuideViewUITests;
+			sourceTree = "<group>";
+		};
+		8461377B1D9D0C690038AE04 /* WQGuideVIew */ = {
+			isa = PBXGroup;
+			children = (
+				8461377C1D9D0C8B0038AE04 /* WQGuideView.h */,
+				8461377D1D9D0C8B0038AE04 /* WQGuideView.m */,
+			);
+			path = WQGuideVIew;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +215,7 @@
 		8461373D1D9D0C4D0038AE04 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = WQ;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = SUWQ;
 				TargetAttributes = {
@@ -271,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				846137501D9D0C4D0038AE04 /* ViewController.m in Sources */,
+				8461377E1D9D0C8B0038AE04 /* WQGuideView.m in Sources */,
 				8461374D1D9D0C4D0038AE04 /* AppDelegate.m in Sources */,
 				8461374A1D9D0C4D0038AE04 /* main.m in Sources */,
 			);
@@ -496,6 +511,7 @@
 				846137741D9D0C4D0038AE04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		846137751D9D0C4D0038AE04 /* Build configuration list for PBXNativeTarget "WQGuideViewTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +520,7 @@
 				846137771D9D0C4D0038AE04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		846137781D9D0C4D0038AE04 /* Build configuration list for PBXNativeTarget "WQGuideViewUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +529,7 @@
 				8461377A1D9D0C4D0038AE04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
