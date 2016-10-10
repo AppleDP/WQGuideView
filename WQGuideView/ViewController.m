@@ -47,27 +47,30 @@
                                                          guides:mutableGuides];
     guideView.delegate = self;
     
+    
     /************************** 使 用 自 定 的 引 导 形 状 **************************/
-    guideView.style = WQCustomer;
-    guideView.customerShapes = customerShapes;
+//    guideView.style = WQCustomer;
+//    guideView.customerShapes = customerShapes;
     
     
     /************************** 使 用 内 置 引 导 图 形 **************************/
-//    /* 加 花 纹 */
-    guideView.style |= WQPattern;
-//    /* 不 加 花 纹 */
-//    guideView.style |= WQNonePattern;
 //    /* 圆 形 */
 //    guideView.style |= WQCircle;
 //    /* 方 形 */
 //    guideView.style |= WQRect;
+//    /* 加 花 纹 */
+//    guideView.style |= WQPattern;
+//    /* 不 加 花 纹 */
+//    guideView.style |= WQNonePattern;
+    
     
     /************************** 设 置 引 导 描 述 字 体 **************************/
 //    guideView.messageFont = [UIFont systemFontOfSize:12];
-    guideView.messageColor = [UIColor greenColor];
+//    guideView.messageColor = [UIColor greenColor];
+    
     
     /************************** 设 置 引 导 描 述 与 引 导 框 距 离 **************************/
-    guideView.space = 10;
+//    guideView.space = 10;
     
     [guideView showGuide];
     [self.view addSubview:guideView];

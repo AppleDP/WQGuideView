@@ -58,7 +58,7 @@ typedef enum{
         self.labMessage.textColor = [UIColor whiteColor];
         self.labMessage.numberOfLines = 0;
         self.messageFont = [UIFont fontWithName:@"Zapfino"
-                                           size:10];
+                                           size:8];
         [self addSubview:self.labMessage];
     }
     return self;
@@ -95,24 +95,24 @@ typedef enum{
     UIBezierPath *shapePath;
     CGFloat lineWidth = 0.0;
     
-    if (self.style & WQRect) {
-        // 方形
-        shapePath = [UIBezierPath bezierPathWithRect:rect];
-    }
-    
     if (self.style & WQCircle) {
         // 圆形
         shapePath = [UIBezierPath bezierPathWithOvalInRect:rect];
     }
     
-    if (self.style & WQPattern) {
-        // 有花纹
-        lineWidth = self.patternWidth;
+    if (self.style & WQRect) {
+        // 方形
+        shapePath = [UIBezierPath bezierPathWithRect:rect];
     }
     
     if (self.style & WQNonePattern) {
         // 无花纹
         lineWidth = 0;
+    }
+    
+    if (self.style & WQPattern) {
+        // 有花纹
+        lineWidth = self.patternWidth;
     }
     
     if (self.style & WQCustomer) {
@@ -166,9 +166,6 @@ typedef enum{
         [self guideWithIndex:self.currentIndex];
         return;
     }
-    self.currentIndex = 0;
-    [self guideWithIndex:self.currentIndex];
-    return;
     
     [self removeFromSuperview];
     if ([self.delegate respondsToSelector:@selector(hideGuide)]) {
