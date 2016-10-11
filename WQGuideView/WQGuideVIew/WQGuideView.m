@@ -10,6 +10,8 @@
 
 #define sWidth  CGRectGetWidth(self.frame)
 #define sHeigth CGRectGetHeight(self.frame)
+/*! 引导描述距离 guideView 边框大小 */
+#define Margin 10.0
 
 typedef enum{
     Left  = 1,
@@ -36,8 +38,11 @@ typedef enum{
         self.alpha = 0.8;
         
         // 默认样式为圆形有花
-        self.style = WQCircle;
-        self.style |= WQNonePattern;
+        self.boxStyle = WQCircle;
+        self.boxStyle |= WQNonePattern;
+        
+        // 默认引导样式
+        self.messageStyle = WQStyle0;
         
         // 描述与框默认距离
         self.space = 10;
@@ -89,33 +94,38 @@ typedef enum{
     self.btnGuide.frame = rect;
     
     // 添加描述
-    [self addMessage:[[dic allKeys] firstObject]
-            nearRect:rect];
+    if (self.messageStyle == WQStyle0) {
+        [self addMessage0:[[dic allKeys] firstObject]
+                 nearRect:rect];
+    }else {
+        [self addMessage1:[[dic allKeys] firstObject]
+                 nearRect:rect];
+    }
     
     UIBezierPath *shapePath;
     CGFloat lineWidth = 0.0;
     
-    if (self.style & WQCircle) {
+    if (self.boxStyle & WQCircle) {
         // 圆形
         shapePath = [UIBezierPath bezierPathWithOvalInRect:rect];
     }
     
-    if (self.style & WQRect) {
+    if (self.boxStyle & WQRect) {
         // 方形
         shapePath = [UIBezierPath bezierPathWithRect:rect];
     }
     
-    if (self.style & WQNonePattern) {
+    if (self.boxStyle & WQNonePattern) {
         // 无花纹
         lineWidth = 0;
     }
     
-    if (self.style & WQPattern) {
+    if (self.boxStyle & WQPattern) {
         // 有花纹
         lineWidth = self.patternWidth;
     }
     
-    if (self.style & WQCustomer) {
+    if (self.boxStyle & WQCustomer) {
         // 用户自定义
         NSAssert(self.customerShapes.count == self.guides.count, @"自定义引导形状个数和引导个数不一致");
         shapePath = (UIBezierPath *)self.customerShapes[index];
@@ -134,24 +144,54 @@ typedef enum{
 }
 
 #pragma mark 引导描述放于中心上下的一个边
-- (void)addMessage:(NSString *)message
-          nearRect:(CGRect)rect{
+- (void)addMessage0:(NSString *)message
+           nearRect:(CGRect)rect{
     CGPoint center = CGPointMake(CGRectGetMidX(rect),
                                  CGRectGetMidY(rect));
     self.location = center.x > sWidth - center.x ? Left : Right;
     self.location |= (sHeigth - center.y) > sHeigth/2 ? Down : Upper;
     
     // 文字最大显示区域
-    CGSize size = CGSizeMake(self.location & Left ?  center.x : sWidth - center.x - 10,
+    CGSize size = CGSizeMake(self.location & Left ?  center.x : sWidth - center.x - Margin,
                              self.location & Upper ? CGRectGetMinY(rect) - self.space : sHeigth - (self.space + CGRectGetMaxY(rect)));
-    
     // 文字长宽
     CGRect msgRect = [message boundingRectWithSize:size
                                            options:NSStringDrawingUsesLineFragmentOrigin
                                         attributes:@{NSFontAttributeName : self.labMessage.font}
                                            context:nil];
     CGFloat labY = self.location & Upper ? CGRectGetMinY(rect) - self.space - CGRectGetHeight(msgRect) : CGRectGetMaxY(rect) + self.space;
-    CGFloat labX = self.location & Left ? center.x - CGRectGetWidth(msgRect) + 10 : center.x;
+    CGFloat labX = self.location & Left ? center.x - CGRectGetWidth(msgRect) + Margin : center.x;
+    CGRect labRect = CGRectMake(labX,
+                                labY,
+                                msgRect.size.width,
+                                msgRect.size.height);
+    self.labMessage.frame = labRect;
+    self.labMessage.text = message;
+}
+
+- (void)addMessage1:(NSString *)message
+           nearRect:(CGRect)rect {
+    CGPoint center = CGPointMake(CGRectGetMidX(rect),
+                                 CGRectGetMidY(rect));
+    self.location = (sHeigth - center.y) > sHeigth/2 ? Down : Upper;
+    
+    // 文字最大显示区域
+    CGSize size = CGSizeMake(sWidth - Margin*2,
+                             self.location & Upper ? CGRectGetMinY(rect) - self.space : sHeigth - (self.space + CGRectGetMaxY(rect)));
+    // 文字长宽
+    CGRect msgRect = [message boundingRectWithSize:size
+                                           options:NSStringDrawingUsesLineFragmentOrigin
+                                        attributes:@{NSFontAttributeName : self.labMessage.font}
+                                           context:nil];
+    CGFloat labY = self.location & Upper ? CGRectGetMinY(rect) - self.space - CGRectGetHeight(msgRect) : CGRectGetMaxY(rect) + self.space;
+    CGFloat labX = 0.0;
+    if (center.x + msgRect.size.width/2 >= sWidth) {
+        labX = sWidth - msgRect.size.width - Margin ;
+    }else if (center.x - msgRect.size.width/2 <= 0){
+        labX = Margin;
+    }else {
+        labX = CGRectGetMidX(rect) - msgRect.size.width/2;
+    }
     CGRect labRect = CGRectMake(labX,
                                 labY,
                                 msgRect.size.width,

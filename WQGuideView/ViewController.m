@@ -33,10 +33,10 @@
 
             /************************** 自 定 义 引 导 形 状 **************************/
             UIBezierPath *path = [UIBezierPath bezierPath];
-            [path moveToPoint:CGPointMake(CGRectGetMinX(view.frame)-10, CGRectGetMinY(view.frame)-10)];
-            [path addLineToPoint:CGPointMake(CGRectGetMaxX(view.frame)+10, CGRectGetMinY(view.frame)-10)];
-            [path addLineToPoint:CGPointMake(CGRectGetMaxX(view.frame)+10-CGRectGetWidth(view.frame)*1/5, CGRectGetMaxY(view.frame)+10)];
-            [path addLineToPoint:CGPointMake(CGRectGetMinX(view.frame)-10+CGRectGetWidth(view.frame)*1/5, CGRectGetMaxY(view.frame)+10)];
+            [path moveToPoint:CGPointMake(CGRectGetMinX(view.frame)-10, CGRectGetMinY(view.frame))];
+            [path addLineToPoint:CGPointMake(CGRectGetMaxX(view.frame)+10, CGRectGetMinY(view.frame))];
+            [path addLineToPoint:CGPointMake(CGRectGetMaxX(view.frame)+10-CGRectGetWidth(view.frame)*1/5, CGRectGetMaxY(view.frame))];
+            [path addLineToPoint:CGPointMake(CGRectGetMinX(view.frame)-10+CGRectGetWidth(view.frame)*1/5, CGRectGetMaxY(view.frame))];
             [path closePath];
             [customerShapes addObject:path];
         }
@@ -49,33 +49,39 @@
     
     
     /************************** 使 用 自 定 的 引 导 形 状 **************************/
-//    guideView.style = WQCustomer;
+//    guideView.boxStyle = WQCustomer;
 //    guideView.customerShapes = customerShapes;
     
     
     /************************** 使 用 内 置 引 导 图 形 **************************/
 //    /* 圆 形 */
-//    guideView.style |= WQCircle;
+//    guideView.boxStyle |= WQCircle;
 //    /* 方 形 */
-//    guideView.style |= WQRect;
+//    guideView.boxStyle |= WQRect;
 //    /* 加 花 纹 */
-//    guideView.style |= WQPattern;
+//    guideView.boxStyle |= WQPattern;
 //    /* 不 加 花 纹 */
-//    guideView.style |= WQNonePattern;
+//    guideView.boxStyle |= WQNonePattern;
+    
+    
+    /************************** 使 用 内 置 引 导 描 述 放 置 样 式 **************************/
+//    guideView.messageStyle = WQStyle1;
     
     
     /************************** 设 置 引 导 描 述 字 体 **************************/
-//    guideView.messageFont = [UIFont systemFontOfSize:12];
+//    guideView.messageFont = [UIFont systemFontOfSize:15];
 //    guideView.messageColor = [UIColor greenColor];
     
     
     /************************** 设 置 引 导 描 述 与 引 导 框 距 离 **************************/
 //    guideView.space = 10;
     
-    [guideView showGuide];
+    
     [self.view addSubview:guideView];
+    [guideView showGuide];
 }
 
+#pragma mark WQGuideViewDelegate
 - (void)hideGuide {
     NSLog(@"***************** 欢 迎 使 用 WQGuideView *****************");
 }

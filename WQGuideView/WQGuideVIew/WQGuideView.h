@@ -14,7 +14,12 @@ typedef enum{
     WQRect        = 1 << 2,   /*! 方形 */
     WQCircle      = 1 << 3,   /*! 圆形 */
     WQCustomer    = 1 << 4    /*! 自定义引导图形 */
-}WQGuideStyle;
+}WQGuideBoxStyle;
+
+typedef enum{
+    WQStyle0, /*! 引导描述放在引导范围中心上（下）的一边 */
+    WQStyle1  /*! 引导描述中心点 x 与引导范围中心一致 */
+}WQGuideMessageStyle;
 
 @protocol WQGuideViewDelegate <NSObject>
 - (void)hideGuide;
@@ -30,7 +35,9 @@ typedef enum{
 /*! 设置引导提示文字颜色，默认为白 */
 @property (nonatomic, strong) UIColor *messageColor;
 /*! 引导框样式，默认为圆形无边框 */
-@property (nonatomic, assign) WQGuideStyle style;
+@property (nonatomic, assign) WQGuideBoxStyle boxStyle;
+/*! 引导描述放置样式，默认为 WQStyle0 */
+@property (nonatomic, assign) WQGuideMessageStyle messageStyle;
 /*! 自定义引导框形状，在 style 设置为 WQCustomer 时可用 */
 @property (nonatomic, copy) NSArray<UIBezierPath *> *customerShapes;
 /*! 花纹大小，默认为 5，在 style 设置为 WQPattern 时可用 */
