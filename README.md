@@ -2,7 +2,7 @@
 引导视图<br/>
 
 <p align="center" >
-  <img src="https://github.com/AppleDP/WQGuideView/blob/master/WQGuideView/Gif/GuideView1.gif" alt="Effectg" title="Effect">
+  <img src="https://github.com/AppleDP/WQGuideView/blob/master/WQGuideView/Gif/GuideView1.gif" alt="Effect" title="Effect">
 </p>
 
 # Principle
