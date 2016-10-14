@@ -2,7 +2,7 @@
 引导视图<br/>
 
 <p align="center" >
-  <img src="https://raw.githubusercontent.com/AppleDP/WQFlowLayout/master/WQFlowLayout/UIScreenshot/scale.png" alt="Scale" title="Effect">
+  <img src="https://github.com/AppleDP/WQGuideView/blob/master/WQGuideView/Gif/GuideView1.gif" alt="Effectg" title="Effect">
 </p>
 
 # Principle
